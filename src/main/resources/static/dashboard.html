@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DashBoard</title>
+    <link
+      rel="stylesheet"
+      href="assets/bootstrap-5.3.1-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  </head>
+  <script src="./JS/jquery-3.7.1.min.js"></script>
+  <script src="./JS/endPoints.js"></script>
+  <body>
+    <div class="wrapper" id="dashboard-section">
+      <aside id="sidebar">
+        <div class="d-flex">
+          <button class="toggle-btn" id="toggle-btn" type="button">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="sidebar-logo">
+            <a href="#">Hello Shoe Shop</a>
+          </div>
+        </div>
+
+        <ul class="sidebar-nav">
+          <li class="sidebar-item">
+            <a href="#" id="home-nav" class="sidebar-link">
+              <i class="fa-solid fa-house" style="color: #ffffff"></i>
+              <span>Home</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
+            <a href="#" id="profile-nav" class="sidebar-link">
+              <i class="fa-regular fa-user" style="color: #ffffff"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="#" id="store-nav" class="sidebar-link">
+              <i class="fa-solid fa-store"></i>
+              <span>Store</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
+            <a href="#" id="customer-nav" class="sidebar-link">
+              <i class="fa-solid fa-users" style="color: #ffffff"></i>
+              <span>Customer</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
+            <a href="#" id="employee-nav" class="sidebar-link">
+              <i class="fa-solid fa-user-tie" style="color: #ffffff"></i>
+              <span>Employee</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
+            <a href="#" id="supplier-nav" class="sidebar-link">
+              <i class="fa-solid fa-truck" style="color: #ffffff"></i>
+              <span>Supplier</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
+            <a href="#" id="inventory-nav" class="sidebar-link">
+              <i class="fa-solid fa-warehouse" style="color: #ffffff"></i>
+              <span>Inventory Service</span>
+            </a>
+          </li>
+
+        </ul>
+        <div class="sidebar-footer">
+          <a  id="logout-nav" class="sidebar-link" onclick="logout()">
+            <i
+              class="fa-solid fa-right-from-bracket"
+              style="color: #ffffff"
+            ></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </aside>
+      <div id="content">
+
+      </div>
+
+    <!---->
+    <!--Link-->
+    <script src="assets/lib/jquery.min.js"></script>
+    <script src="assets/bootstrap-5.3.1-dist/js/bootstrap.min.js"></script>
+    <script src="./JS/script.js"></script>
+  </body>
+</html>

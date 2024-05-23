@@ -1,0 +1,433 @@
+<script src="./JS/inventory.js"></script>
+<section id="inventory-section">
+  <div class="container">
+    <label class="form-label fw-bold fs-4 mb-4" style="color: #264653"
+      >Inventory Details</label
+    >
+    <form class="row g-3">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button
+          class="btn me-md-2"
+          style="background: #264653; color: white"
+          type="button"
+          id="addInventoryFormOpen"
+        >
+          Add New
+        </button>
+        <button
+          class="btn"
+          style="background: #e76f51; color: white"
+          type="button"
+        >
+          Delete
+        </button>
+      </div>
+      <!--      CUSTOMER  TABLE VIEW-->
+
+      <h3 class="fw-bold fs-4 my-3">RECENT ORDERS</h3>
+      <div class="row">
+        <div class="col-12">
+          <table class="table table-striped">
+            <thead>
+              <tr class="highlight">
+                <th scope="col"></th>
+                <th scope="col">Item Code</th>
+                <th scope="col">Category</th>
+                <th scope="col">Size</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Sale Price</th>
+                <th scope="col">Buy Price</th>
+                <th scope="col">Profit</th>
+                <th scope="col">Availability</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody id="inventoryBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!---->
+<!--//////////////////////////////////////////////////////-->
+<!--EDIT-MODAL-->
+<div
+  class="modal fade"
+  id="editInventoryModal"
+  tabindex="-1"
+  aria-labelledby="editInventoryModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Update Inventory Details
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="#">
+          <div class="row">
+            <div class="col-md-12">
+              <label for="inputEmployeeImage" class="form-label fw-bold"
+                >Item Image</label
+              >
+              <div class="col-md-4">
+                <img
+                  id="editpreview"
+                  src=""
+                  class="img-fluid"
+                  alt="Item Image"
+                />
+              </div>
+              <div class="col-md-8">
+                <input
+                  type="file"
+                  class="form-control"
+                  id="inputItemImage"
+                  style="background-color: #e9c46a"
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="existItemCode" class="form-label fw-bold"
+                >Item Code</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existItemCode"
+                readonly
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existNewItemQty" class="form-label fw-bold"
+                >Qty</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existNewItemQty"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existNewItemDescription" class="form-label fw-bold"
+                >Description</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existItemDescription"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="existNewItemCategory" class="form-label fw-bold"
+                >Item Category</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existNewItemCategory"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="existNewItemShoeSize" class="form-label fw-bold"
+                >Size</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existNewItemShoeSize"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existSupplierCode" class="form-label fw-bold"
+                >Supplier Code</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existSupplierCode"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existSupplierName" class="form-label fw-bold"
+                >Supplier Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existSupplierName"
+                readonly
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existSaleUnitPrice" class="form-label fw-bold"
+                >Unit Price-SALE</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existSaleUnitPrice"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="existBuyUnitPrice" class="form-label fw-bold"
+                >Unit Price-BUY</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existBuyUnitPrice"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existProfite" class="form-label fw-bold"
+                >Profit</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existProfite"
+                readonly
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existProfitMargin" class="form-label fw-bold"
+                >Profit Margin</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existProfitMargin"
+                readonly
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existStatus" class="form-label fw-bold"
+                >Availability</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existStatus"
+                readonly
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn"
+          style="background: #e76f51; color: white"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn"
+          style="background: #264653; color: white"
+          id="saveChanges"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--ADD-Modal -->
+<div
+  class="modal fade"
+  id="addNewInventory"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Add New Inventory Details
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="#">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="addInventoryImage" class="form-label fw-bold"
+                >Upload Image</label
+              >
+              <input
+                type="file"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addInventoryImage"
+                accept="image/*"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="imagePreview" class="form-label fw-bold"
+                >Image Preview</label
+              >
+              <div
+                id="imagePreview"
+                style="background-color: #e9c46a; padding: 10px"
+              >
+                <img
+                  id="addpreview"
+                  src=""
+                  alt="Image Preview"
+                  style="width: 100%; display: none"
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="inputNewItemCode" class="form-label fw-bold"
+                >Item Code</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="inputNewItemCode"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="inputNewItemDescription" class="form-label fw-bold"
+                >Description</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="inputNewItemDescription"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="inputNewItemCategory" class="form-label fw-bold"
+                >Item Category</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="inputNewItemCategory"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="inputNewItemShoeSize" class="form-label fw-bold"
+                > Size</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="inputNewItemShoeSize"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="addSupplierCode" class="form-label fw-bold"
+                >Supplier Code</label
+              >
+              <select
+                id="addSupplierCode"
+                style="background-color: #e9c46a"
+                class="form-select"
+              >
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="addSaleUnitPrice" class="form-label fw-bold"
+                >Unit Price-SALE</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addSaleUnitPrice"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="addBuyUnitPrice" class="form-label fw-bold"
+                >Unit Price-BUY</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addBuyUnitPrice"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="addQty" class="form-label fw-bold">Quantity</label>
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addQty"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn"
+          style="background: #e76f51; color: white"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn"
+          style="background: #264653; color: white"
+          id="addNew"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--/////////////////////////////////////////-->

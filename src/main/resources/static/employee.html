@@ -1,0 +1,442 @@
+<script src="./JS/employee.js"></script>
+<section id="employee-section">
+  <div class="container">
+    <label class="form-label fw-bold fs-4 mb-4" style="color: #264653"
+      >Employees Details</label
+    >
+    <form class="row g-3">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button
+          class="btn me-md-2"
+          style="background: #264653; color: white"
+          type="button"
+          onclick="handleNewEmployeeForm()"
+        >
+          Add New
+        </button>
+        <!-- <button
+          class="btn"
+          style="background: #2a9d8f; color: white"
+          type="button"
+        >
+          Update
+        </button> -->
+        <button
+          class="btn"
+          style="background: #e76f51; color: white"
+          type="button"
+        >
+          Delete
+        </button>
+      </div>
+      <h3 class="fw-bold fs-4 my-3">RECENT RECORDS</h3>
+      <div class="row">
+        <div class="col-12">
+          <table class="table table-striped">
+            <thead>
+              <tr class="highlight">
+                <th scope="col">Employee Code</th>
+                <th scope="col">Name</th>
+                <th scope="col">Designation</th>
+                <th scope="col">Joined Date</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact Number</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody id="employeesBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- EDIT MODEL -->
+<div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editEmployeeModalLabel">Edit Employee</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editEmployeeForm">
+          <div class="row">
+            <div class="col-md-12">
+              <label for="inputEmployeeImage" class="form-label fw-bold">Employee Image</label>
+              <div class="col-md-4">
+                <img id="editpreview" src="" class="img-fluid" alt="Employee Image" >
+              </div>
+              <div class="col-md-8">
+                <input type="file" class="form-control" id="inputEmployeeImage" style="background-color: #e9c46a">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="inputEmployeeCode" class="form-label fw-bold">Employee Code</label>
+              <input type="text" class="form-control" id="inputEmployeeCode" style="background-color: #e9c46a" readonly/>
+            </div>
+            <div class="col-md-4">
+              <label for="inputEmployeeName" class="form-label fw-bold">Employee Name</label>
+              <input type="text" class="form-control" id="inputEmployeeName" style="background-color: #e9c46a"/>
+            </div>
+            <div class="col-md-4">
+              <label for="inputGender" class="form-label fw-bold">Gender</label>
+              <select id="inputGender" class="form-select" style="background-color: #e9c46a">
+                <option>Choose...</option>
+                <option>MALE</option>
+                <option>FEMALE</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="inputStatus" class="form-label fw-bold">Status</label>
+              <input type="text" class="form-control" id="inputStatus" style="background-color: #e9c46a"/>
+            </div>
+            <div class="col-md-4">
+              <label for="inputDesignation" class="form-label fw-bold">Designation</label>
+              <input type="text" class="form-control" id="inputDesignation" style="background-color: #e9c46a"/>
+            </div>
+            <div class="col-md-4">
+              <label for="inputRole" class="form-label fw-bold">Role</label>
+              <select id="inputRole" class="form-select" style="background-color: #e9c46a">
+                <option>Choose...</option>
+                <option>ADMIN</option>
+                <option>USER</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="inputDOB" class="form-label fw-bold">Date Of Birth</label>
+              <input type="date" class="form-control" id="inputDOB" style="background-color: #e9c46a"/>
+            </div>
+            <div class="col-md-4">
+              <label for="inputDOJ" class="form-label fw-bold">Date Of Join</label>
+              <input type="date" class="form-control" id="inputDOJ" style="background-color: #e9c46a"/>
+            </div>
+            <div class="col-md-4">
+              <label for="inputBranch" class="form-label fw-bold">Attached Branch</label>
+              <input type="text" class="form-control" id="inputBranch" style="background-color: #e9c46a"/>
+            </div>
+            <div class="col-md-4">
+              <label for="inputEmployeeAddress1" class="form-label fw-bold">Address 1</label>
+              <input type="text" class="form-control" id="inputEmployeeAddress1" style="background-color: #e9c46a"/>
+            </div>
+            <div class="col-md-4">
+              <label for="inputEmployeeAddress2" class="form-label fw-bold">Address 2</label>
+              <input type="text" class="form-control" id="inputEmployeeAddress2" style="background-color: #e9c46a"/>
+            </div>
+            <div class="col-md-4">
+              <label for="inputEmployeeAddress3" class="form-label fw-bold">Address 3</label>
+              <input type="text" class="form-control" id="inputEmployeeAddress3" style="background-color: #e9c46a"/>
+            </div>
+            <div class="col-md-6">
+              <label for="inputEmployeeAddress4" class="form-label fw-bold">Address 4</label>
+              <input type="text" class="form-control" id="inputEmployeeAddress4" style="background-color: #e9c46a"/>
+            </div>
+            <div class="col-md-6">
+              <label for="inputEmployeeAddress5" class="form-label fw-bold">Address 5</label>
+              <input type="text" class="form-control" id="inputEmployeeAddress5" style="background-color: #e9c46a"/>
+            </div>
+            <div class="col-md-4">
+              <label for="inputEmployeeContact" class="form-label fw-bold">Contact Number</label>
+              <input type="tel" class="form-control" id="inputEmployeeContact" style="background-color: #e9c46a"/>
+            </div>
+            <div class="col-md-4">
+              <label for="inputEmail" class="form-label fw-bold">Email</label>
+              <input type="email" class="form-control" id="inputEmail" style="background-color: #e9c46a"/>
+            </div>
+            <div class="col-md-4">
+              <label for="inputCaseOfEmergency" class="form-label fw-bold">Inform in case of emergency</label>
+              <input type="text" class="form-control" id="inputCaseOfEmergency" style="background-color: #e9c46a"/>
+            </div>
+            <div class="col-md-4">
+              <label for="inputEmergencyContact" class="form-label fw-bold">Emergency Contact</label>
+              <input type="text" class="form-control" id="inputEmergencyContact" style="background-color: #e9c46a"/>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="saveChanges">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--MODAL-->
+
+<div
+  class="modal fade"
+  id="addNewEmployee"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Add New Employee Details
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="#">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="addEmployeeImage" class="form-label fw-bold"
+                >Upload Image</label
+              >
+              <input
+                type="file"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addEmployeeImage"
+                accept="image/*"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="imagePreview" class="form-label fw-bold"
+                >Image Preview</label
+              >
+              <div
+                id="imagePreview"
+                style="background-color: #e9c46a; padding: 10px"
+              >
+                <img
+                  id="addpreview"
+                  src=""
+                  alt="Image Preview"
+                  style="width: 100%; display: none"
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="addEmployeeName" class="form-label fw-bold"
+                >Employee Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addEmployeeName"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="addGender" class="form-label fw-bold">Gender</label>
+              <select
+                id="addGender"
+                style="background-color: #e9c46a"
+                class="form-select"
+              >
+                <option selected>Choose...</option>
+                <option>MALE</option>
+                <option>FEMALE</option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label for="addStatus" class="form-label fw-bold">Status</label>
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addStatus"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="addDesignation" class="form-label fw-bold"
+                >Designation</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addDesignation"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="addRole" class="form-label fw-bold">Role</label>
+              <select
+                id="addRole"
+                style="background-color: #e9c46a"
+                class="form-select"
+              >
+                <option selected>Choose...</option>
+                <option>ADMIN</option>
+                <option>USER</option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label for="addDOB" class="form-label fw-bold"
+                >Date Of Birth</label
+              >
+              <input
+                type="date"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addDOB"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="addDOJ" class="form-label fw-bold"
+                >Date Of Join</label
+              >
+              <input
+                type="date"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addDOJ"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="addBranch" class="form-label fw-bold"
+                >Attached Branch</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addBranch"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="addEmployeeAddress1" class="form-label fw-bold"
+                >Address 1</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addEmployeeAddress1"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="addEmployeeAddress2" class="form-label fw-bold"
+                >Address 2</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addEmployeeAddress2"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="addEmployeeAddress3" class="form-label fw-bold"
+                >city</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addEmployeeAddress3"
+              />
+            </div>
+
+            <div class="col-md-6">
+              <label for="addEmployeeAddress4" class="form-label fw-bold"
+                >state</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addEmployeeAddress4"
+              />
+            </div>
+
+            <div class="col-md-6">
+              <label for="addEmployeeAddress5" class="form-label fw-bold"
+                >postal code</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addEmployeeAddress5"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="addEmployeeContact" class="form-label fw-bold"
+                >Contact Number</label
+              >
+              <input
+                type="tel"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addEmployeeContact"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="addEmail" class="form-label fw-bold">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addEmail"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="addEmergencyContact" class="form-label fw-bold"
+                >Emergency Contact</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addEmergencyContact"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="addEmergencyInformer" class="form-label fw-bold"
+                >Emergency Informer</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addEmergencyInformer"
+              />
+            </div>
+
+            <!--            -->
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn"
+          style="background: #e76f51; color: white"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn"
+          style="background: #264653; color: white"
+          onclick="saveEmployee()"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--///////////////////////////////-->

@@ -1,0 +1,375 @@
+<script src="./JS/supplier.js"></script>
+<section id="supplier-section">
+  <div class="container">
+    <label class="form-label fw-bold fs-4 mb-4" style="color: #264653"
+      >Supplier Details</label
+    >
+    <form class="row g-3">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button
+          class="btn me-md-2"
+          style="background: #264653; color: white"
+          type="button"
+          id="addSupplierFormOpen"
+        >
+          Add New
+        </button>
+        <button
+          class="btn"
+          style="background: #e76f51; color: white"
+          type="button"
+        >
+          Delete
+        </button>
+      </div>
+      <!--      CUSTOMER  TABLE VIEW-->
+
+      <h3 class="fw-bold fs-4 my-3">RECENT ORDERS</h3>
+      <div class="row">
+        <div class="col-12">
+          <table class="table table-striped">
+            <thead>
+              <tr class="highlight">
+                <th scope="col">Supplier Code</th>
+                <th scope="col">Name</th>
+                <th scope="col">Contact No</th>
+                <th scope="col">Category(Local/International)</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody id="supplierBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!--EDIT-MODAL-->
+
+<div
+  class="modal fade"
+  id="editSupplierModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Update Supplier Details
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="#">
+          <div class="row">
+            <div class="col-md-4">
+              <label for="existSupplierName" class="form-label fw-bold"
+                >Supplier Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existSupplierName"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existCategory" class="form-label fw-bold"
+                >Category</label
+              >
+              <select
+                id="existCategory"
+                style="background-color: #e9c46a"
+                class="form-select"
+              >
+                <option selected>Choose...</option>
+                <option>INTERNATIONAL</option>
+                <option>LOCAL</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="existEmail" class="form-label fw-bold">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existEmail"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existAddressLine1" class="form-label fw-bold"
+                >Address Line 1</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existAddressLine1"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existAddressLine2" class="form-label fw-bold"
+                >Address Line 2</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existAddressLine2"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existCity" class="form-label fw-bold">City</label>
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existCity"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existState" class="form-label fw-bold">State</label>
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existState"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existPostalCode" class="form-label fw-bold"
+                >Postal Code</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existPostalCode"
+              />
+            </div>
+            <div class="col-md-4" id="countryContainer">
+              <label for="existCountry" class="form-label fw-bold"
+                >Country</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existCountry"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existMobileNo" class="form-label fw-bold"
+                >Mobile No</label
+              >
+              <input
+                type="tel"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existMobileNo"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existLandLineNo" class="form-label fw-bold"
+                >Land Line No</label
+              >
+              <input
+                type="tel"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existLandLineNo"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn"
+          style="background: #e76f51; color: white"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn"
+          style="background: #264653; color: white"
+          id="saveChanges"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--ADD-MODAL-->
+<div
+  class="modal fade"
+  id="addNewSupplier"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Add New Supplier Details
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="#">
+          <div class="row">
+            <div class="col-md-4">
+              <label for="SupplierName" class="form-label fw-bold"
+                >Supplier Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="SupplierName"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="Category" class="form-label fw-bold">Category</label>
+              <select
+                id="Category"
+                style="background-color: #e9c46a"
+                class="form-select"
+              >
+                <option selected>Choose...</option>
+                <option>INTERNATIONAL</option>
+                <option>LOCAL</option>
+              </select>
+            </div>
+            <div class="col-md-4" id="countryContainer"></div>
+            <div class="col-md-4">
+              <label for="addSupplierEmail" class="form-label fw-bold"
+                >Email</label
+              >
+              <input
+                type="email"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="email"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="addSupAddress1" class="form-label fw-bold"
+                >Address Line 1</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addSupAddress1"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="addSupAddress2" class="form-label fw-bold"
+                >Address Line 2</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addSupAddress2"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="addSupAddress3" class="form-label fw-bold"
+                >City</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addSupAddress3"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="addSupAddress4" class="form-label fw-bold"
+                >State</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addSupAddress4"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="addSupAddress5" class="form-label fw-bold"
+                >Postal Code</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addSupAddress5"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="addContact1" class="form-label fw-bold"
+                >Mobile No</label
+              >
+              <input
+                type="tel"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addContact1"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="addContact2" class="form-label fw-bold"
+                >Land Line No</label
+              >
+              <input
+                type="tel"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addContact2"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn"
+          style="background: #e76f51; color: white"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn"
+          style="background: #264653; color: white"
+          id="addNew"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
