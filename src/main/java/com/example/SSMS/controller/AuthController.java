@@ -4,6 +4,7 @@ import com.example.SSMS.dtos.SignInRequestDTO;
 import com.example.SSMS.dtos.AuthenticationResponseDTO;
 import com.example.SSMS.dtos.SignUpRequestDTO;
 import com.example.SSMS.model.AppUser;
+import com.example.SSMS.model.Employee;
 import com.example.SSMS.service.AuthServiceI;
 import com.example.SSMS.service.UserServiceI;
 import jakarta.servlet.http.HttpServletResponse;
@@ -38,7 +39,7 @@ public class AuthController {
     }
 
     @GetMapping("/profile")
-    public ResponseEntity<AppUser> getLoggedUser(){
+    public ResponseEntity<Employee> getLoggedUser(){
         return ResponseEntity.ok(authServiceI.getCurrentUser());
     }
 

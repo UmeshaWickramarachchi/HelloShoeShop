@@ -1,5 +1,6 @@
 package com.example.SSMS.service;
 
+import com.example.SSMS.dtos.OrderPlacingRequestDTO;
 import com.example.SSMS.dtos.SalesRequestDTO;
 import com.example.SSMS.model.Refund;
 import com.example.SSMS.model.Sale;
@@ -19,4 +20,6 @@ public interface SaleServiceI {
     Sale ApproveCardPaymentOrders(String orderNo);
 
     List<Sale> getSalesByStatus();
+
+    Sale placeOrder(OrderPlacingRequestDTO orderReq);
 }

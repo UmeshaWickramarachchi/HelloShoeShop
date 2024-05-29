@@ -1,184 +1,102 @@
+<script src="./JS/customers.js"></script>
 <section id="customer-section">
-    <div  class="container">
-        <label  class="form-label fw-bold fs-4  mb-4" style="color: #264653" >Customer Details</label>
-        <form class="row g-3">
+  <div class="container">
+    <label class="form-label fw-bold fs-4 mb-4" style="color: #264653"
+      >Customer Details</label
+    >
+    <form class="row g-3">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button
+          class="btn me-md-2"
+          style="background: #264653; color: white"
+          type="button"
+          id="addCustomerFormOpen"
+        >
+          Add New
+        </button>
+        <button
+          class="btn"
+          style="background: #e76f51; color: white"
+          type="button"
+        >
+          Delete
+        </button>
+      </div>
+      <!--      CUSTOMER  TABLE VIEW-->
 
-
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn me-md-2" data-bs-toggle="modal" data-bs-target="#addNewCustomer" style="background: #264653 ; color: white"type="button">Add New</button>
-                <button class="btn " style="background: #2a9d8f ; color: white" type="button">Update</button>
-                <button class="btn "style="background: #e76f51 ; color: white" type="button">Delete</button>
-
-            </div>
-
-
-            <div class="col-md-4">
-                <label for="inputCustomerCode" class="form-label fw-bold">Customer Code</label>
-                <input type="number" class="form-control" style="background-color: #e9c46a" id="inputCustomerCode">
-            </div>
-            <div class="col-md-4">
-                <label for="inputCustomerName" class="form-label fw-bold">Customer Name</label>
-                <input type="text" class="form-control" style="background-color: #e9c46a"  id="inputCustomerName">
-            </div>
-
-
-            <div class="col-md-4">
-                <label for="inputGender" class="form-label fw-bold">Gender</label>
-                <select id="inputGender" style="background-color: #e9c46a" class="form-select">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                </select>
-            </div>
-            <div class="col-md-4">
-                <label for="inputDate" class="form-label fw-bold">Date</label>
-                <input type="date" class="form-control" style="background-color: #e9c46a" id="inputDate">
-            </div>
-
-
-
-
-            <div class="col-md-4">
-                <label for="inputLevel" class="form-label fw-bold">Level</label>
-                <select id="inputLevel" style="background-color: #e9c46a" class="form-select">
-                    <option selected>Choose...</option>
-                    <option>Gold</option>
-                    <option>Silver</option>
-                    <option>Bronze</option>
-                    <option>New</option>
-                </select>
-            </div>
-
-            <div class="col-md-4">
-                <label for="inputTotalPoints" class="form-label fw-bold">Total Points</label>
-                <input type="text" class="form-control" style="background-color: #e9c46a" id="inputTotalPoints">
-            </div>
-
-
-            <div class="col-md-6">
-                <label for="inputDOB" class="form-label fw-bold">Date Of Birth</label>
-                <input type="date" class="form-control" style="background-color: #e9c46a" id="inputDOB">
-            </div>
-
-            <div class="col-md-6">
-                <label for="inputEmail" class="form-label fw-bold">Email</label>
-                <input type="email" class="form-control" style="background-color: #e9c46a" id="inputEmail">
-            </div>
-
-
-            <div class="col-md-4">
-                <label for="inputAddress1" class="form-label fw-bold">Address 1</label>
-                <input type="text" class="form-control" style="background-color: #e9c46a" id="inputAddress1">
-            </div>
-            <div class="col-md-4">
-                <label for="inputAddress2" class="form-label fw-bold">Address 2</label>
-                <input type="text" class="form-control" style="background-color: #e9c46a" id="inputAddress2">
-            </div>
-            <div class="col-md-4">
-                <label for="inputAddress3" class="form-label fw-bold">Address 3</label>
-                <input type="text" class="form-control" style="background-color: #e9c46a" id="inputAddress3">
-            </div>
-
-            <div class="col-md-6">
-                <label for="inputAddress4" class="form-label fw-bold">Address 4</label>
-                <input type="text" class="form-control" style="background-color: #e9c46a" id="inputAddress4">
-            </div>
-
-            <div class="col-md-6">
-                <label for="inputAddress5" class="form-label fw-bold">Address 5</label>
-                <input type="text" class="form-control" style="background-color: #e9c46a" id="inputAddress5">
-            </div>
-            <div class="col-md-4">
-                <label for="inputRePuDate" class="form-label fw-bold">Recent Purchase Date and Time</label>
-                <input type="datetime-local" class="form-control" style="background-color: #e9c46a" id="inputRePuDate">
-            </div>
-
-
-            <!--      CUSTOMER  TABLE VIEW-->
-
-
-            <h3 class="fw-bold fs-4 my-3">RECENT ORDERS
-            </h3>
-            <div class="row">
-                <div class="col-12">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr class="highlight">
-                            <th scope="col">#</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Order Date</th>
-                            <th scope="col">Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>user1</td>
-                            <td>11/12/2024</td>
-                            <td >pending</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>user2</td>
-                            <td>11/12/2024</td>
-                            <td>complete</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>user3</td>
-                            <td>11/12/2024</td>
-                            <td >delivered</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </form>
-
-
-    </div>
+      <h3 class="fw-bold fs-4 my-3">RECENT CUSTOMERS DETAILS</h3>
+      <div class="row">
+        <div class="col-12">
+          <table class="table table-striped">
+            <thead>
+              <tr class="highlight">
+                <th scope="col">Customer Code</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Total Points</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thead>
+            <tbody id="customerTable">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
 </section>
 
+<!--EDIT-MODEL-->
 
-<!--MODAL-->
-
-<div class="modal fade" id="addNewCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Inventory Details</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div
+  class="modal fade"
+  id="updateExistCustomer"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Update Customer Details
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="#">
+          <div class="row">
+            <div class="col-md-4">
+              <label for="existCustomerName" class="form-label fw-bold"
+                >Customer Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existCustomerName"
+              />
             </div>
-            <div class="modal-body">
-                <form action="#">
-                    <div class="row">
-
-
-                        <div class="col-md-4">
-                            <label for="addCustomerCode" class="form-label fw-bold">Customer Code</label>
-                            <input type="number" class="form-control" style="background-color: #e9c46a" id="addCustomerCode">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="addCustomerName" class="form-label fw-bold">Customer Name</label>
-                            <input type="text" class="form-control" style="background-color: #e9c46a"  id="addCustomerName">
-                        </div>
-
-
-                        <div class="col-md-4">
-                            <label for="addGender" class="form-label fw-bold">Gender</label>
-                            <select id="addGender" style="background-color: #e9c46a" class="form-select">
-                                <option selected>Choose...</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
+            <div class="col-md-4">
+              <label for="existGender" class="form-label fw-bold">Gender</label>
+              <select
+                id="existGender"
+                style="background-color: #e9c46a"
+                class="form-select"
+              >
+                <option selected>Choose...</option>
+                <option>MALE</option>
+                <option>FEMALE</option>
+              </select>
+            </div>
+            <!-- <div class="col-md-4">
                             <label for="addDate" class="form-label fw-bold">Date</label>
                             <input type="date" class="form-control" style="background-color: #e9c46a" id="addDate">
                         </div>
-
-
-
-
                         <div class="col-md-4">
                             <label for="addLevel" class="form-label fw-bold">Level</label>
                             <select id="addLevel" style="background-color: #e9c46a" class="form-select">
@@ -189,62 +107,305 @@
                                 <option>New</option>
                             </select>
                         </div>
-
                         <div class="col-md-4">
                             <label for="addTotalPoints" class="form-label fw-bold">Total Points</label>
                             <input type="text" class="form-control" style="background-color: #e9c46a" id="addTotalPoints">
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <label for="addDOB" class="form-label fw-bold">Date Of Birth</label>
-                            <input type="date" class="form-control" style="background-color: #e9c46a" id="addDOB">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="addEmail" class="form-label fw-bold">Email</label>
-                            <input type="email" class="form-control" style="background-color: #e9c46a" id="addEmail">
-                        </div>
-
-
-                        <div class="col-md-4">
-                            <label for="addAddress1" class="form-label fw-bold">Address 1</label>
-                            <input type="text" class="form-control" style="background-color: #e9c46a" id="addAddress1">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="addAddress2" class="form-label fw-bold">Address 2</label>
-                            <input type="text" class="form-control" style="background-color: #e9c46a" id="addAddress2">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="addAddress3" class="form-label fw-bold">Address 3</label>
-                            <input type="text" class="form-control" style="background-color: #e9c46a" id="addAddress3">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="addAddress4" class="form-label fw-bold">Address 4</label>
-                            <input type="text" class="form-control" style="background-color: #e9c46a" id="addAddress4">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="addAddress5" class="form-label fw-bold">Address 5</label>
-                            <input type="text" class="form-control" style="background-color: #e9c46a" id="addAddress5">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="addRePuDate" class="form-label fw-bold">Recent Purchase Date and Time</label>
-                            <input type="datetime-local" class="form-control" style="background-color: #e9c46a" id="addRePuDate">
-                        </div>
-
-                        <!--            -->
-
-                    </div>
-                </form>
-
-
+                        </div> -->
+            <div class="col-md-6">
+              <label for="existingDOB" class="form-label fw-bold"
+                >Date Of Birth</label
+              >
+              <input
+                type="date"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existingDOB"
+              />
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn " style="background: #e76f51 ; color: white" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn " style="background: #264653 ; color: white">Save</button>
+            <div class="col-md-6">
+              <label for="existEmail" class="form-label fw-bold">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existEmail"
+              />
             </div>
-        </div>
+            <div class="col-md-4">
+              <label for="existAddressLine1" class="form-label fw-bold"
+                >Address 1</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existAddressLine1"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existAddressLine2" class="form-label fw-bold"
+                >Address 2</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existAddressLine2"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="existCity" class="form-label fw-bold"
+                >City</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existCity"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="existState" class="form-label fw-bold"
+                >State</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existState"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="existPostalCode" class="form-label fw-bold"
+                >Postal Code</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existPostalCode"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="existMobileNo" class="form-label fw-bold"
+                >Contact No</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="existMobileNo"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn"
+          style="background: #e76f51; color: white"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn"
+          style="background: #264653; color: white"
+          id="addNew"
+        >
+          Update
+        </button>
+      </div>
     </div>
+  </div>
+</div>
+
+<!--ADD-MODAL-->
+
+<div
+  class="modal fade"
+  id="addNewCustomer"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Add New Customer
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="#">
+          <div class="row">
+            <div class="col-md-4">
+              <label for="CustomerCode" class="form-label fw-bold"
+                >Customer Code</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="CustomerCode"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="CustomerName" class="form-label fw-bold"
+                >Customer Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addCustomerName"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="Gender" class="form-label fw-bold">Gender</label>
+              <select
+                id="Gender"
+                style="background-color: #e9c46a"
+                class="form-select"
+              >
+                <option selected>Choose...</option>
+                <option>MALE</option>
+                <option>FEMALE</option>
+              </select>
+            </div>
+            <!-- <div class="col-md-4">
+                            <label for="addDate" class="form-label fw-bold">Date</label>
+                            <input type="date" class="form-control" style="background-color: #e9c46a" id="addDate">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="addLevel" class="form-label fw-bold">Level</label>
+                            <select id="addLevel" style="background-color: #e9c46a" class="form-select">
+                                <option selected>Choose...</option>
+                                <option>Gold</option>
+                                <option>Silver</option>
+                                <option>Bronze</option>
+                                <option>New</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="addTotalPoints" class="form-label fw-bold">Total Points</label>
+                            <input type="text" class="form-control" style="background-color: #e9c46a" id="addTotalPoints">
+                        </div> -->
+            <div class="col-md-6">
+              <label for="addDOB" class="form-label fw-bold"
+                >Date Of Birth</label
+              >
+              <input
+                type="date"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="dob"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="email" class="form-label fw-bold">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="email"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="addAddress1" class="form-label fw-bold"
+                >Address 1</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addAddress1"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="addAddress2" class="form-label fw-bold"
+                >Address 2</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addAddress2"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="addAddress3" class="form-label fw-bold"
+                >City</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addAddress3"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="addAddress4" class="form-label fw-bold"
+                >State</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addAddress4"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="addAddress5" class="form-label fw-bold"
+                >Postal Code</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addAddress5"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="addContact" class="form-label fw-bold"
+                >Contact No</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                style="background-color: #e9c46a"
+                id="addContact"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn"
+          style="background: #e76f51; color: white"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn"
+          style="background: #264653; color: white"
+          id="addNew"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,6 +1,8 @@
 package com.example.SSMS.controller;
 
+import com.example.SSMS.dtos.OrderPlacingRequestDTO;
 import com.example.SSMS.dtos.SalesRequestDTO;
+import com.example.SSMS.exception.InternalServerErrorException;
 import com.example.SSMS.model.Sale;
 import com.example.SSMS.model.enums.Status;
 import com.example.SSMS.service.SaleServiceI;
@@ -33,6 +35,20 @@ public class SalesController {
                 return new ResponseEntity<>(sale,HttpStatus.OK);
             }
         } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/place-order")
+    public ResponseEntity<Sale> placeOrder(@RequestBody OrderPlacingRequestDTO req){
+        try{
+            Sale sale = saleServiceI.placeOrder(req);
+            if(sale == null){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }else{
+                return new ResponseEntity<>(sale,HttpStatus.OK);
+            }
+        }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

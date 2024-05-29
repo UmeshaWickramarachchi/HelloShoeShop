@@ -27,7 +27,7 @@ $(document).ready(function () {
       success: function (data) {
         let supplierBody = $("#supplierBody");
         supplierBody.empty(); // Clear the table body
-
+        const userRole = window.sessionStorage.getItem("loggedUserRole");
         data.forEach((supplier, index) => {
           let row = `
                     <tr>
@@ -35,9 +35,12 @@ $(document).ready(function () {
                       <td>${supplier.supplierName}</td>
                       <td>${supplier.mobileNo}</td>
                       <td>${supplier.category}</td>
-                      <td><button class="btn btn-sm btn-primary supplierEditBtn" data-id="${supplier.email}">Edit</button></td>
-                    </tr>
                   `;
+          if(userRole === "ADMIN" || userRole === "SUPER_ADMIN"){
+            row += `<td><button class="btn btn-sm btn-primary supplierEditBtn" data-id="${supplier.email}">Edit</button></td>
+            `;
+          }
+          row += `</tr>`;
           supplierBody.append(row);
         });
         $(".supplierEditBtn").on("click", function (e) {

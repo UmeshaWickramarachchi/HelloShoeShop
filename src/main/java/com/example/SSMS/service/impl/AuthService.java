@@ -4,6 +4,8 @@ import com.example.SSMS.dtos.AuthenticationResponseDTO;
 import com.example.SSMS.dtos.SignInRequestDTO;
 import com.example.SSMS.dtos.SignUpRequestDTO;
 import com.example.SSMS.model.AppUser;
+import com.example.SSMS.model.Employee;
+import com.example.SSMS.repository.EmployeeDAO;
 import com.example.SSMS.repository.UserDAO;
 import com.example.SSMS.service.AuthServiceI;
 import com.example.SSMS.utill.JwtUtill;
@@ -32,6 +34,8 @@ public class AuthService implements AuthServiceI {
     private UserService userService;
     @Autowired
     private JwtUtill utill;
+    @Autowired
+    private EmployeeDAO employeeDAO;
 
     @Override
     public AppUser createUser(SignUpRequestDTO signUpRequest) {
@@ -58,12 +62,12 @@ public class AuthService implements AuthServiceI {
         return new AuthenticationResponseDTO(jwt,refreshToken);
     }
 
-    public AppUser getCurrentUser() {
+    public Employee getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !authentication.isAuthenticated()) {
             return null;
         }
         String userEmail = ((UserDetails) authentication.getPrincipal()).getUsername();
-        return userDAO.findByEmail(userEmail).orElse(null);
+        return employeeDAO.findByEmail(userEmail);
     }
 }

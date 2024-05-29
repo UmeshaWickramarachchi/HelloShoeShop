@@ -8,14 +8,11 @@ import java.util.ArrayList;
 
 @Data
 public class SalesRequestDTO {
+    private String orderNo;
     private String customerName;
-    private String paymentMethod;
     private boolean hasLoyalityCard;
     private double addedPoints;
     private String cashierName;
     private ArrayList<OrderItems> items;
-    private String customerCode;
-    private String cardNo;
-    private String exDate;
-    private String cnn;
+    private String contactNo;
 }

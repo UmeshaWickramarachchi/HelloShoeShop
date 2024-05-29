@@ -34,6 +34,8 @@ $(document).ready(function () {
     })
       .done(function (user) {
         console.log("Logged-in User:", user);
+        window.sessionStorage.setItem("loggedUser",user.employeeName);
+        window.sessionStorage.setItem("loggedUserRole",user.appUser.role);
         navigateToDashboard(user);
       })
       .fail(function (error) {
@@ -42,9 +44,9 @@ $(document).ready(function () {
   }
 
   function navigateToDashboard(user) {
-    if (user.role === "ADMIN" || user.role === "SUPER_ADMIN") {
+    if (user.appUser.role === "ADMIN" || user.appUser.role === "SUPER_ADMIN" ) {
       window.location.href = "/adminDashboard.html";
-    } else if (user.role === "USER") {
+    } else if (user.appUser.role === "USER") {
       window.location.href = "/dashboard.html";
     } else {
       console.error("Unknown user role:", user.role);
@@ -56,6 +58,8 @@ $(document).ready(function () {
 
 function logout(){
   window.sessionStorage.removeItem("jwt");
+  window.sessionStorage.removeItem("loggedUser");
+  window.sessionStorage.removeItem("loggedUserRole");
   currentUser = null;
   window.location.href = "/index.html";
 }

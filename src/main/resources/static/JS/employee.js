@@ -1,8 +1,6 @@
-function handleImagePreview(id,previewId){
-document
-  .getElementById(id)
-  .addEventListener("change", function () {
-    const file = this.files[0]
+function handleImagePreview(id, previewId) {
+  document.getElementById(id).addEventListener("change", function () {
+    const file = this.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = function (event) {
@@ -19,13 +17,13 @@ document
   });
 }
 
-  function handleNewEmployeeForm(){
-    handleImagePreview("addEmployeeImage","addpreview");
-    $("#addNewEmployee").modal("show");
-  }
+function handleNewEmployeeForm() {
+  handleImagePreview("addEmployeeImage", "addpreview");
+  $("#addNewEmployee").modal("show");
+}
 
 $(document).ready(function () {
-    let image;
+  let image;
   function fetchEmployees() {
     $.ajax({
       url: "http://localhost:8080/api/employee",
@@ -36,19 +34,24 @@ $(document).ready(function () {
       success: function (data) {
         let employeesBody = $("#employeesBody");
         employeesBody.empty(); // Clear the table body
-
+        const userRole = window.sessionStorage.getItem("loggedUserRole");
         data.forEach((employee, index) => {
           let row = `
-                  <tr>
-                    <th scope="row">${employee.employeeCode}</th>
-                    <td>${employee.employeeName}</td>
-                    <td>${employee.designation}</td>
-                    <td>${employee.dateOfJoin}</td>
-                    <td>${employee.email}</td>
-                    <td>${employee.contactNo}</td>
-                    <td><button class="btn btn-sm btn-primary employeeEditBtn" data-id="${employee.email}">Edit</button></td>
-                  </tr>
-                `;
+            <tr>
+              <th scope="row">${employee.employeeCode}</th>
+              <td>${employee.employeeName}</td>
+              <td>${employee.designation}</td>
+              <td>${employee.dateOfJoin}</td>
+              <td>${employee.email}</td>
+              <td>${employee.contactNo}</td>
+          `;
+          if (userRole === "ADMIN" || userRole === "SUPER_ADMIN") {
+            row += `
+              <td><button class="btn btn-sm btn-primary employeeEditBtn" data-id="${employee.email}">Edit</button></td>
+            `;
+          }
+
+          row += `</tr>`;
           employeesBody.append(row);
         });
         $(".employeeEditBtn").on("click", function (e) {
@@ -116,9 +119,12 @@ $(document).ready(function () {
           type: "image/jpeg",
         });
         image = file;
-        $("#editpreview").attr("src", "data:image/jpeg;base64," + employee.employeePic);
+        $("#editpreview").attr(
+          "src",
+          "data:image/jpeg;base64," + employee.employeePic
+        );
 
-        handleImagePreview("inputEmployeeImage","editpreview")
+        handleImagePreview("inputEmployeeImage", "editpreview");
         $("#editEmployeeModal").modal("show");
       },
       error: function (error) {
@@ -133,7 +139,7 @@ $(document).ready(function () {
         ? image
         : document.getElementById("inputEmployeeImage").files[0];
     const formData = new FormData();
-    formData.append("employeePic",empimage);
+    formData.append("employeePic", empimage);
     formData.append("employeeName", $("#inputEmployeeName").val());
     formData.append("gender", $("#inputGender").val());
     formData.append("status", $("#inputStatus").val());
@@ -155,7 +161,7 @@ $(document).ready(function () {
       $("#inputEmergencyContact").val()
     );
     const email = $("#inputEmail").val();
-    
+
     $.ajax({
       url: `http://localhost:8080/api/employee/${email}`,
       type: "PATCH",
@@ -181,78 +187,78 @@ $(document).ready(function () {
 });
 
 function saveEmployee() {
-    const formData = new FormData();
-  
-    // Append the selected image file to the FormData object
-    const imageFile = document.getElementById("addEmployeeImage").files[0];
-    if (imageFile) {
-      formData.append("employeePic", imageFile);
-    }
-  
-    // Collect other form data
-    formData.append(
-      "employeeName",
-      document.getElementById("addEmployeeName").value
-    );
-    formData.append("gender", document.getElementById("addGender").value);
-    formData.append("status", document.getElementById("addStatus").value);
-    formData.append(
-      "designation",
-      document.getElementById("addDesignation").value
-    );
-    formData.append("accessRole", document.getElementById("addRole").value);
-    formData.append("dob", document.getElementById("addDOB").value);
-    formData.append("dateOfJoin", document.getElementById("addDOJ").value);
-    formData.append("attachedBranch", document.getElementById("addBranch").value);
-    formData.append(
-      "addressLine1",
-      document.getElementById("addEmployeeAddress1").value
-    );
-    formData.append(
-      "addressLine2",
-      document.getElementById("addEmployeeAddress2").value
-    );
-    formData.append("city", document.getElementById("addEmployeeAddress3").value);
-    formData.append(
-      "state",
-      document.getElementById("addEmployeeAddress4").value
-    );
-    formData.append(
-      "postalCode",
-      document.getElementById("addEmployeeAddress5").value
-    );
-    formData.append(
-      "contactNo",
-      document.getElementById("addEmployeeContact").value
-    );
-    formData.append("email", document.getElementById("addEmail").value);
-    formData.append(
-      "emergancyInformer",
-      document.getElementById("addEmergencyInformer").value
-    );
-    formData.append(
-      "emergancyContactDetails",
-      document.getElementById("addEmergencyContact").value
-    );
-    $.ajax({
-      url: "http://localhost:8080/api/employee",
-      type: "POST",
-      data: formData,
-      processData: false,
-      contentType: false,
-      headers: {
-        Authorization: "Bearer " + window.sessionStorage.getItem("jwt"),
-      },
-      success: function (response) {
-        alert("Employee added successfully!");
-        $("#addNewEmployee").modal("hide");
-        form.reset();
-        document.getElementById("addpreview").style.display = "none";
-        fetchEmployees();
-      },
-      error: function (error) {
-        console.error("Error:", error);
-        alert("Failed to add employee. Please try again.");
-      },
-    });
+  const formData = new FormData();
+
+  // Append the selected image file to the FormData object
+  const imageFile = document.getElementById("addEmployeeImage").files[0];
+  if (imageFile) {
+    formData.append("employeePic", imageFile);
   }
+
+  // Collect other form data
+  formData.append(
+    "employeeName",
+    document.getElementById("addEmployeeName").value
+  );
+  formData.append("gender", document.getElementById("addGender").value);
+  formData.append("status", document.getElementById("addStatus").value);
+  formData.append(
+    "designation",
+    document.getElementById("addDesignation").value
+  );
+  formData.append("accessRole", document.getElementById("addRole").value);
+  formData.append("dob", document.getElementById("addDOB").value);
+  formData.append("dateOfJoin", document.getElementById("addDOJ").value);
+  formData.append("attachedBranch", document.getElementById("addBranch").value);
+  formData.append(
+    "addressLine1",
+    document.getElementById("addEmployeeAddress1").value
+  );
+  formData.append(
+    "addressLine2",
+    document.getElementById("addEmployeeAddress2").value
+  );
+  formData.append("city", document.getElementById("addEmployeeAddress3").value);
+  formData.append(
+    "state",
+    document.getElementById("addEmployeeAddress4").value
+  );
+  formData.append(
+    "postalCode",
+    document.getElementById("addEmployeeAddress5").value
+  );
+  formData.append(
+    "contactNo",
+    document.getElementById("addEmployeeContact").value
+  );
+  formData.append("email", document.getElementById("addEmail").value);
+  formData.append(
+    "emergancyInformer",
+    document.getElementById("addEmergencyInformer").value
+  );
+  formData.append(
+    "emergancyContactDetails",
+    document.getElementById("addEmergencyContact").value
+  );
+  $.ajax({
+    url: "http://localhost:8080/api/employee",
+    type: "POST",
+    data: formData,
+    processData: false,
+    contentType: false,
+    headers: {
+      Authorization: "Bearer " + window.sessionStorage.getItem("jwt"),
+    },
+    success: function (response) {
+      alert("Employee added successfully!");
+      $("#addNewEmployee").modal("hide");
+      form.reset();
+      document.getElementById("addpreview").style.display = "none";
+      fetchEmployees();
+    },
+    error: function (error) {
+      console.error("Error:", error);
+      alert("Failed to add employee. Please try again.");
+    },
+  });
+}
